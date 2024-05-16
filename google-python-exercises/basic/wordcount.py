@@ -45,6 +45,40 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+def print_words(filename):
+  with open(filename, 'r') as file:
+    data = file.read().rstrip()
+
+  words = data.split()
+  count_dict = {}
+
+  for word in words:
+    if word in count_dict:
+      count_dict[word] += 1
+    else:
+      count_dict[word] = 1
+      
+  for word, count in count_dict.items():
+    print(f"{word} {count}")
+
+def print_top(filename):
+  with open(filename, 'r') as file:
+    data = file.read().rstrip()
+
+  words = data.split()
+  count_dict = {}
+
+  for word in words:
+    if word in count_dict:
+      count_dict[word] += 1
+    else:
+      count_dict[word] = 1
+
+  sorted_words = sorted(count_dict.items(), key=lambda item: item[1], reverse=True)
+
+  for word, count in sorted_words[:20]:
+    print(f"{word} {count}")
+
 ###
 
 # This basic command line argument parsing code is provided and
