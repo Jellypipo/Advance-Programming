@@ -8,6 +8,8 @@
 
 import sys
 import re
+import pandas as pd 
+import os
 
 """Baby Names exercise
 
@@ -34,15 +36,40 @@ Suggested milestones for incremental development:
  -Fix main() to use the extract_names list
 """
 
-def extract_names(filename):
+def extract_names(file_content):
   """
   Given a file name for baby.html, returns a list starting with the year string
   followed by the name-rank strings in alphabetical order.
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
-  # +++your code here+++
-  return
+  # Extract the year using a regular expression
+  year_match = re.search(r'Popularity in (\d{4})', file_content)
+  year = year_match.group(1) if year_match else 'Unknown'
+  
+  # Extract the table rows using regular expressions
+  rows = re.findall(r'<tr align="right"><td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>', file_content)
+  
+  # Create a summary text
+  summary = f"{year}\n"
+  for rank, male_name, female_name in rows:
+      summary += f"{male_name} {rank}\n"
+      summary += f"{female_name} {rank}\n"
+  
+  return summary
 
+def process_file(filename, summaryfile):
+    with open(filename, 'r', encoding='utf-8') as file:
+        file_content = file.read()
+    
+    summary = extract_names(file_content)
+    
+    if summaryfile:
+        filename_nohtml = filename[:-5]
+        summary_filename = f"{filename_nohtml}.summary"
+        with open(summary_filename, 'w', encoding='utf-8') as summary_file:
+            summary_file.write(summary)
+    else:
+        print(summary)
 
 def main():
   # This command-line parsing code is provided.
@@ -58,11 +85,16 @@ def main():
   summary = False
   if args[0] == '--summaryfile':
     summary = True
-    del args[0]
+    for filename in os.listdir("./"):
+        if filename.endswith('.html'):
+           process_file(filename, summary)
 
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
+  with open(args[0], 'r', encoding='utf-8') as file:
+    file_content = file.read()
+    print(extract_names(file_content))
 
 if __name__ == '__main__':
   main()
