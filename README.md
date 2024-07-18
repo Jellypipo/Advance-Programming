@@ -2,12 +2,13 @@
 
 ## Overview
 
-This repository houses a comprehensive case study along with all programming tasks for the Advanced Programming course, part of the M.Eng. AI for Smart Sensors and Actuators program, Summer Semester 2024. The primary goal is to demonstrate proficiency in using GitHub and to showcase my understanding and ability to manage programming tasks, each of which is submitted as separate commits.
+This repository houses a comprehensive case study and all programming tasks for the Advanced Programming course, part of the M.Eng. AI for Smart Sensors and Actuators program, Summer Semester 2024. The primary goal is to demonstrate proficiency in using GitHub and to showcase my understanding and ability to manage programming tasks, each of which is submitted as separate commits.
 
 ## Author
 
 **Panramon Kanhasiri (Jelly)**
-**Marticulation number: 12304637**
+
+**Matriculation number: 12304637**
 
 ## Installation Instructions
 
@@ -34,10 +35,10 @@ This repository houses a comprehensive case study along with all programming tas
 ## Tasks To Do
 
 - [x] Task 1: Case Study: Titanic
-- [x] Task 2: Google Python Exerise: Basic
-- [x] Task 3: Google Python Exerise: Babynames
-- [ ] Task 4: Google Python Exerise: Copyspecial
-- [ ] Task 5: Google Python Exerise: Logpuzzle
+- [x] Task 2: Google Python Exercise: Basic
+- [x] Task 3: Google Python Exercise: Babynames
+- [x] Task 4: Google Python Exercise: Copyspecial
+- [x] Task 5: Google Python Exercise: Logpuzzle
 
 ## Requirements
 
