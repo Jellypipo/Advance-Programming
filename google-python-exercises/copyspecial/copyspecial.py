@@ -17,7 +17,33 @@ import subprocess
 
 # +++your code here+++
 # Write functions and modify main() to call them
+def get_special_paths(dir):
+    result = []
+    filenames = os.listdir(dir)
+    for filename in filenames:
+        if re.search(r'__\w+__', filename):
+            result.append(os.path.abspath(os.path.join(dir, filename)))
+    return result
 
+def copy_to(paths, dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    for path in paths:
+        shutil.copy(path, dir)
+
+def zip_to(paths, zippath):
+    base_name = os.path.splitext(zippath)[0]
+    dir_name = os.path.dirname(zippath)
+    temp_dir = os.path.join(dir_name, "temp_special")
+    if not os.path.exists(temp_dir):
+        os.makedirs(temp_dir)
+
+    try:
+        for path in paths:
+            shutil.copy(path, temp_dir)
+        shutil.make_archive(base_name, 'zip', temp_dir)
+    finally:
+        shutil.rmtree(temp_dir)
 
 
 def main():
@@ -50,6 +76,18 @@ def main():
 
   # +++your code here+++
   # Call your functions
+  special_paths = []
+  for dir in args:
+    special_paths.extend(get_special_paths(dir))
+
+  if todir:
+    copy_to(special_paths, todir)
+
+  if tozip:
+    zip_to(special_paths, tozip)
+
+  if not todir and not tozip:
+    print('\n'.join(special_paths))
 
 if __name__ == '__main__':
   main()
