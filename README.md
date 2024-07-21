@@ -42,7 +42,7 @@ This repository houses a comprehensive case study and all programming tasks for 
 
 ## Requirements
 
-- **Python version:** 3.x.x
+- **Python version:** 3.11.x
 - **Libraries:**
     - pandas==1.3.3
     - scikit-learn==0.24.2
