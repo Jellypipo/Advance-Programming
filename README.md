@@ -1,4 +1,4 @@
-# Advance Programming Assignments
+# Advanced Programming Assignments
 
 ## Overview
 
